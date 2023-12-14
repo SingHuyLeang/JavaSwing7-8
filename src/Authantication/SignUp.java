@@ -125,7 +125,7 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     public static void main(String args[]) {
-        new Theme("dark");
+        new Theme("light");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SignUp().setVisible(true);
