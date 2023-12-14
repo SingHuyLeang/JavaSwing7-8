@@ -1,8 +1,9 @@
 package Authantication;
 
+import Themes.Theme;
 import Views.Home;
-
 public class SignUp extends javax.swing.JFrame {
+    
     public SignUp() {
         initComponents();
     }
@@ -120,12 +121,11 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_gotoSignInMouseClicked
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        new Home().setVisible(true);
         
-        dispose();
     }//GEN-LAST:event_btnSignUpActionPerformed
 
-    public static void main(String args[]) {        
+    public static void main(String args[]) { 
+        new Theme("light");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SignUp().setVisible(true);
