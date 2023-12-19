@@ -1,7 +1,7 @@
 package Authantication;
 
 import Themes.Theme;
-import Views.Home;
+import Home.Home;
 public class SignUp extends javax.swing.JFrame {
 
     public SignUp() {

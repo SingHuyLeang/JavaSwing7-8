@@ -1,4 +1,4 @@
-package Views;
+package Home;
 
 import Themes.Theme;
 import java.awt.Component;
@@ -33,28 +33,32 @@ public class Home extends javax.swing.JFrame {
         backgound = new javax.swing.JPanel();
         homeScreen = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        homeTable = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
+        txtQty = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JLabel();
+        txtDiscount = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         lbImage = new javax.swing.JLabel();
         btnImage = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         searchScreen = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jTextField7 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         profileScreen = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         settingScreen = new javax.swing.JPanel();
@@ -140,9 +144,9 @@ public class Home extends javax.swing.JFrame {
         jLabel2.setText("Shop-App");
         homeScreen.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 813, 47));
 
-        jTextField1.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 140, 30));
+        txtName.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 140, 30));
 
         jLabel5.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -150,7 +154,7 @@ public class Home extends javax.swing.JFrame {
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
         homeScreen.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 80, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        homeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -158,9 +162,9 @@ public class Home extends javax.swing.JFrame {
                 "Id", "Name", "Qty", "Price", "Total", "Discount", "Image"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(homeTable);
 
-        homeScreen.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 780, 290));
+        homeScreen.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 860, 290));
 
         jLabel6.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -168,13 +172,13 @@ public class Home extends javax.swing.JFrame {
         jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
         homeScreen.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 80, 30));
 
-        jTextField2.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 140, 30));
+        txtId.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 140, 30));
 
-        jTextField3.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 140, 30));
+        txtQty.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtQty.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 140, 30));
 
         jLabel7.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -188,23 +192,18 @@ public class Home extends javax.swing.JFrame {
         jLabel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
         homeScreen.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 80, 30));
 
-        jTextField4.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 140, 30));
+        txtPrice.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtPrice.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 140, 30));
 
-        jLabel9.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("Total        :");
-        jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 80, 30));
+        txtTotal.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtTotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 140, 30));
 
-        jTextField5.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 140, 30));
-
-        jTextField6.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, 140, 30));
+        txtDiscount.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtDiscount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(txtDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, 140, 30));
 
         jLabel10.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -222,44 +221,66 @@ public class Home extends javax.swing.JFrame {
                 btnImageActionPerformed(evt);
             }
         });
-        homeScreen.add(btnImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 530, 90, -1));
+        homeScreen.add(btnImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, 120, -1));
 
-        jButton3.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jButton3.setText("Add");
-        homeScreen.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 90, -1));
+        btnAdd.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        homeScreen.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 90, -1));
 
-        jButton4.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jButton4.setText("Update");
-        homeScreen.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 90, -1));
+        btnUpdate.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        btnUpdate.setText("Update");
+        homeScreen.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 90, -1));
 
-        jButton5.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jButton5.setText("Clear");
-        homeScreen.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 90, -1));
+        btnClear.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        btnClear.setText("Clear");
+        homeScreen.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 90, -1));
 
-        jButton6.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jButton6.setText("Delete");
-        homeScreen.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 90, -1));
+        btnDelete.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        btnDelete.setText("Delete");
+        homeScreen.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 90, -1));
+
+        jLabel12.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel12.setText("Total        :");
+        jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 80, 30));
 
         backgound.add(homeScreen, "card2");
 
-        jLabel3.setText("Search");
+        searchScreen.setBackground(new java.awt.Color(255, 255, 255));
+        searchScreen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout searchScreenLayout = new javax.swing.GroupLayout(searchScreen);
-        searchScreen.setLayout(searchScreenLayout);
-        searchScreenLayout.setHorizontalGroup(
-            searchScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchScreenLayout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(510, Short.MAX_VALUE))
-        );
-        searchScreenLayout.setVerticalGroup(
-            searchScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchScreenLayout.createSequentialGroup()
-                .addGap(238, 238, 238)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(302, Short.MAX_VALUE))
-        );
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Name", "Qty", "Price", "Total", "Discount", "Image"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        searchScreen.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 850, 290));
+
+        jTextField7.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        jTextField7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(100, 100, 100)));
+        searchScreen.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 390, 40));
+
+        jLabel3.setFont(new java.awt.Font("Barlow", 1, 36)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Shop-App");
+        searchScreen.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 813, 47));
+
+        jLabel11.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel11.setText("  Search      :");
+        jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(100, 100, 100)));
+        searchScreen.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 100, 40));
 
         backgound.add(searchScreen, "card3");
 
@@ -272,7 +293,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(profileScreenLayout.createSequentialGroup()
                 .addGap(245, 245, 245)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(510, Short.MAX_VALUE))
+                .addContainerGap(595, Short.MAX_VALUE))
         );
         profileScreenLayout.setVerticalGroup(
             profileScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +314,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(settingScreenLayout.createSequentialGroup()
                 .addGap(245, 245, 245)
                 .addComponent(setting, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(510, Short.MAX_VALUE))
+                .addContainerGap(595, Short.MAX_VALUE))
         );
         settingScreenLayout.setVerticalGroup(
             settingScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,6 +371,22 @@ public class Home extends javax.swing.JFrame {
         lbImage.setIcon(new ImageIcon(image));
     }//GEN-LAST:event_btnImageActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        int id         = Integer.parseInt(txtId.getText());
+        String name    = txtName.getText();
+        int qty        = Integer.parseInt(txtQty.getText());
+        double price   = Double.parseDouble(txtPrice.getText());
+        int discount   = Integer.parseInt(txtDiscount.getText());
+        
+        System.out.println(
+                id+"\n"+
+                name+"\n"+
+                qty+"\n"+
+                price+"\n"+
+                discount
+        );
+    }//GEN-LAST:event_btnAddActionPerformed
+
     public static void main(String args[]) {
         new Theme("light");
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -361,19 +398,22 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgound;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnImage;
     private javax.swing.JButton btnProfile;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSetting;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel dashBoard;
     private javax.swing.JPanel homeScreen;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JTable homeTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -381,19 +421,20 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel lbImage;
     private javax.swing.JPanel profileScreen;
     private javax.swing.JPanel searchScreen;
     private javax.swing.JLabel setting;
     private javax.swing.JPanel settingScreen;
+    private javax.swing.JTextField txtDiscount;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtQty;
+    private javax.swing.JLabel txtTotal;
     // End of variables declaration//GEN-END:variables
 }
