@@ -1,5 +1,6 @@
 package Authantication;
 
+import Database.DBConnection;
 import Themes.Theme;
 import Home.Home;
 
@@ -171,9 +172,11 @@ public class SignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_gotoSignUpMouseClicked
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
-        new Home().setVisible(true);
-        
-        dispose();
+          DBConnection.connection();
+
+//        new Home().setVisible(true);
+//        
+//        dispose();
     }//GEN-LAST:event_btnSignInActionPerformed
 
     public static void main(String args[]) {
