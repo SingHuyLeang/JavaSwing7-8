@@ -1,9 +1,18 @@
 package Authantication;
 
+import Component.MSG;
+import Database.DBConnection;
 import Themes.Theme;
 import Home.Home;
-public class SignUp extends javax.swing.JFrame {
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+
+public class SignUp extends javax.swing.JFrame {
+    
+    PreparedStatement ps;
+    
     public SignUp() {
         initComponents();
     }
@@ -17,12 +26,12 @@ public class SignUp extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         gotoSignIn = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         btnSignUp = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtRePass = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,13 +71,13 @@ public class SignUp extends javax.swing.JFrame {
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 150, 30));
 
-        jTextField1.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 220, 30));
+        txtPassword.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 220, 30));
 
-        jTextField2.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 220, 30));
+        txtEmail.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 220, 30));
 
         btnSignUp.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         btnSignUp.setText("Sign Up");
@@ -89,9 +98,9 @@ public class SignUp extends javax.swing.JFrame {
         jLabel7.setText("Do you have an account ? ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 210, 24));
 
-        jTextField3.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 220, 30));
+        txtRePass.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtRePass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        jPanel1.add(txtRePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 220, 30));
 
         jLabel8.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -121,7 +130,34 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_gotoSignInMouseClicked
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-
+        String email    = txtEmail.getText();
+        String password = txtPassword.getText();
+        String rePass   = txtRePass.getText();
+        
+        if (!email.isEmpty() && !password.isEmpty() && !rePass.isEmpty()) {
+            if (password.equals(rePass)) {
+                String sql = "INSERT INTO `authantication`(`email`, `password`) VALUES (?,?)";
+                try {
+                    ps = DBConnection.connection().prepareStatement(sql);
+                    ps.setString(1, email);
+                    ps.setString(2, password);
+                    int i = ps.executeUpdate();
+                    if (i>0) {
+                        System.out.println("Sign Up Success");
+                        new Home().setVisible(true);
+                        dispose();
+                    }else{
+                        System.out.println("Sign Up Not Success");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                MSG.warning("Your Re-Password is not correct");
+            }
+        } else {
+            MSG.warning("All field can not empty");
+        }
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     public static void main(String args[]) {
@@ -144,8 +180,8 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtRePass;
     // End of variables declaration//GEN-END:variables
 }
