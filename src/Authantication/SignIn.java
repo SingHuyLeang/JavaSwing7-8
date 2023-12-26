@@ -5,8 +5,6 @@ import Database.DBConnection;
 import Themes.Theme;
 import Home.Home;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class SignIn extends javax.swing.JFrame {
     PreparedStatement ps;
