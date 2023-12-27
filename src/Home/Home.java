@@ -1,5 +1,8 @@
 package Home;
 
+import Component.MSG;
+import Controller.ProductController;
+import Model.ProductModel;
 import Themes.Theme;
 import java.awt.Component;
 import java.awt.Image;
@@ -8,6 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
 public class Home extends javax.swing.JFrame {
+    
+    ProductController controller = new ProductController();
+    
     public Home() {
         initComponents();
     }
@@ -44,15 +50,17 @@ public class Home extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
         txtTotal = new javax.swing.JLabel();
-        txtDiscount = new javax.swing.JTextField();
+        txtImage = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         lbImage = new javax.swing.JLabel();
         btnImage = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        btnClear = new javax.swing.JButton();
+        btnFindTotal = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        txtDiscount = new javax.swing.JTextField();
+        btnClear = new javax.swing.JButton();
         searchScreen = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -172,7 +180,9 @@ public class Home extends javax.swing.JFrame {
         jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
         homeScreen.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 80, 30));
 
+        txtId.setEditable(false);
         txtId.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtId.setText("Auto");
         txtId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
         homeScreen.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 140, 30));
 
@@ -199,11 +209,11 @@ public class Home extends javax.swing.JFrame {
         txtTotal.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         txtTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtTotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 140, 30));
+        homeScreen.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 120, 30));
 
-        txtDiscount.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        txtDiscount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
-        homeScreen.add(txtDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, 140, 30));
+        txtImage.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtImage.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(txtImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 560, 0, 0));
 
         jLabel10.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -236,9 +246,15 @@ public class Home extends javax.swing.JFrame {
         btnUpdate.setText("Update");
         homeScreen.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 90, -1));
 
-        btnClear.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
-        btnClear.setText("Clear");
-        homeScreen.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 90, -1));
+        btnFindTotal.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        btnFindTotal.setText("X");
+        btnFindTotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        btnFindTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindTotalActionPerformed(evt);
+            }
+        });
+        homeScreen.add(btnFindTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, 20, 30));
 
         btnDelete.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         btnDelete.setText("Delete");
@@ -249,6 +265,14 @@ public class Home extends javax.swing.JFrame {
         jLabel12.setText("Total        :");
         jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
         homeScreen.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 80, 30));
+
+        txtDiscount.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        txtDiscount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(100, 100, 100)));
+        homeScreen.add(txtDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, 140, 30));
+
+        btnClear.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
+        btnClear.setText("Clear");
+        homeScreen.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 90, -1));
 
         backgound.add(homeScreen, "card2");
 
@@ -369,23 +393,40 @@ public class Home extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(fileName);
         Image image = icon.getImage().getScaledInstance(lbImage.getWidth(), lbImage.getHeight(), Image.SCALE_SMOOTH);
         lbImage.setIcon(new ImageIcon(image));
+        txtImage.setText(fileName);
     }//GEN-LAST:event_btnImageActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        int id         = Integer.parseInt(txtId.getText());
         String name    = txtName.getText();
-        int qty        = Integer.parseInt(txtQty.getText());
-        double price   = Double.parseDouble(txtPrice.getText());
-        int discount   = Integer.parseInt(txtDiscount.getText());
+        String qty1        = txtQty.getText();
+        String price1   = txtPrice.getText();
+        String discount1   = txtDiscount.getText();
+        String image = txtImage.getText();
+        String total1 = txtTotal.getText();
         
-        System.out.println(
-                id+"\n"+
-                name+"\n"+
-                qty+"\n"+
-                price+"\n"+
-                discount
-        );
+        if (!total1.isEmpty() && !name.isEmpty() && !qty1.isEmpty() && !price1.isEmpty() && !discount1.isEmpty() && !image.isEmpty()) {
+            int qty        = Integer.parseInt(qty1);
+            double price   = Double.parseDouble(price1);
+            int discount   = Integer.parseInt(discount1);
+            double total   = Double.parseDouble(total1);
+            controller.add(new ProductModel(name, qty, price, total, discount, image));
+        }else{
+            MSG.warning("All field can not empty");
+        }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnFindTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindTotalActionPerformed
+        String qty1 = txtQty.getText();
+        String price1 = txtPrice.getText();
+        if (!qty1.isEmpty() && !price1.isEmpty()) {
+            int qty = Integer.parseInt(qty1);
+            double price = Double.parseDouble(qty1);
+            double total = qty * price;
+            txtTotal.setText(String.valueOf(total));
+        } else {
+            MSG.error("Please enter quantity and price");
+        }
+    }//GEN-LAST:event_btnFindTotalActionPerformed
 
     public static void main(String args[]) {
         new Theme("light");
@@ -401,6 +442,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnFindTotal;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnImage;
     private javax.swing.JButton btnProfile;
@@ -432,6 +474,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel settingScreen;
     private javax.swing.JTextField txtDiscount;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtImage;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQty;

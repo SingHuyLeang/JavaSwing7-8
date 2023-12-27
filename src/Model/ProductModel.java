@@ -17,6 +17,18 @@ public class ProductModel {
         this.image = image;
     }
 
+    public ProductModel(int id, String name, int qty, double price, double total, int discount, String image) {
+        this.id = id;
+        this.name = name;
+        this.qty = qty;
+        this.price = price;
+        this.total = total;
+        this.discount = discount;
+        this.image = image;
+    }
+    
+    
+
     public int getId() {
         return id;
     }
