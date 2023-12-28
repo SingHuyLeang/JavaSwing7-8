@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
 
 public class Home extends javax.swing.JFrame {
     
@@ -16,6 +17,37 @@ public class Home extends javax.swing.JFrame {
     
     public Home() {
         initComponents();
+        getData();
+    }
+    
+    private void getData(){
+        DefaultTableModel model = (DefaultTableModel) homeTable.getModel();
+        model.setRowCount(0);
+        
+        controller.get().forEach((product)->{
+            Object[] row = {
+                product.getId(),
+                product.getName(),
+                product.getQty(),
+                product.getPrice(),
+                product.getTotal(),
+                product.getDiscount(),
+                product.getImage()
+            };
+            model.addRow(row);
+        });
+        
+    }
+    
+    private void clear(){
+        txtId.setText("");
+        txtName.setText("");
+        txtQty.setText("");
+        txtPrice.setText("");
+        txtTotal.setText("");
+        txtDiscount.setText("");
+        txtImage.setText("");
+        lbImage.setIcon(null);
     }
     
     // switch panel
@@ -272,6 +304,11 @@ public class Home extends javax.swing.JFrame {
 
         btnClear.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
         homeScreen.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 90, -1));
 
         backgound.add(homeScreen, "card2");
@@ -410,6 +447,8 @@ public class Home extends javax.swing.JFrame {
             int discount   = Integer.parseInt(discount1);
             double total   = Double.parseDouble(total1);
             controller.add(new ProductModel(name, qty, price, total, discount, image));
+            getData();
+            clear();
         }else{
             MSG.warning("All field can not empty");
         }
@@ -420,13 +459,20 @@ public class Home extends javax.swing.JFrame {
         String price1 = txtPrice.getText();
         if (!qty1.isEmpty() && !price1.isEmpty()) {
             int qty = Integer.parseInt(qty1);
-            double price = Double.parseDouble(qty1);
+            double price = Double.parseDouble(txtPrice.getText());
             double total = qty * price;
+            System.out.println("qty   = "+qty);
+            System.out.println("price = "+price);
+            System.out.println("total = "+total);
             txtTotal.setText(String.valueOf(total));
         } else {
             MSG.error("Please enter quantity and price");
         }
     }//GEN-LAST:event_btnFindTotalActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        clear();
+    }//GEN-LAST:event_btnClearActionPerformed
 
     public static void main(String args[]) {
         new Theme("light");

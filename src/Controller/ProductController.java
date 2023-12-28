@@ -4,10 +4,27 @@ import Component.MSG;
 import Database.DBConnection;
 import Model.ProductModel;
 import java.sql.*;
+import java.util.*;
 
 public class ProductController extends DBConnection{
     PreparedStatement ps;
     ResultSet rs;
+    
+    public Collection<ProductModel> get(){
+        List<ProductModel> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `tbl_product`";
+            ps=connection().prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                ProductModel product = new ProductModel(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7));
+                list.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     
     public void add(ProductModel product){
         String sql = "INSERT INTO `tbl_product`(`name`, `qty`, `price`, `total`, `discount`, `image`) VALUES (?,?,?,?,?,?)";
