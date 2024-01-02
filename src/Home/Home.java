@@ -300,6 +300,11 @@ public class Home extends javax.swing.JFrame {
 
         btnDelete.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         homeScreen.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 90, -1));
 
         jLabel12.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
@@ -521,6 +526,17 @@ public class Home extends javax.swing.JFrame {
             MSG.warning("Please select item");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if (!txtId.getText().isEmpty()) {
+            int id = Integer.parseInt(txtId.getText());
+            controller.delete(id);
+            getData();
+            clear();
+        }else{
+            MSG.warning("Please select item");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     public static void main(String args[]) {
         new Theme("light");

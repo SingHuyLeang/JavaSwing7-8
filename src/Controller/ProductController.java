@@ -70,6 +70,18 @@ public class ProductController extends DBConnection{
         }
     }
     public void delete(int id){
-        
+        String sql = "DELETE FROM `tbl_product` WHERE `id`=?";
+        try {
+            ps=connection().prepareStatement(sql);
+            ps.setInt(1,id);
+            int i = ps.executeUpdate();
+            if (i>0) {
+                MSG.success("Deleted");
+            } else {
+                MSG.error("Delete Fail");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
