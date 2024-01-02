@@ -202,6 +202,11 @@ public class Home extends javax.swing.JFrame {
                 "Id", "Name", "Qty", "Price", "Total", "Discount", "Image"
             }
         ));
+        homeTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(homeTable);
 
         homeScreen.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 860, 290));
@@ -276,6 +281,11 @@ public class Home extends javax.swing.JFrame {
 
         btnUpdate.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         homeScreen.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 90, -1));
 
         btnFindTotal.setFont(new java.awt.Font("Barlow", 0, 18)); // NOI18N
@@ -473,6 +483,44 @@ public class Home extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         clear();
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void homeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeTableMouseClicked
+       DefaultTableModel model = (DefaultTableModel) homeTable.getModel();
+       int row = homeTable.getSelectedRow();
+       txtId.setText(model.getValueAt(row, 0).toString());
+       txtName.setText(model.getValueAt(row, 1).toString());
+       txtQty.setText(model.getValueAt(row, 2).toString());
+       txtPrice.setText(model.getValueAt(row, 3).toString());
+       txtTotal.setText(model.getValueAt(row, 4).toString());
+       txtDiscount.setText(model.getValueAt(row, 5).toString());
+       txtImage.setText(model.getValueAt(row, 6).toString());
+       ImageIcon icon = new ImageIcon(txtImage.getText());
+       Image image = icon.getImage().getScaledInstance(lbImage.getWidth(), lbImage.getHeight(), Image.SCALE_SMOOTH);
+       lbImage.setIcon(new ImageIcon(image));
+       txtImage.setText(txtImage.getText());
+    }//GEN-LAST:event_homeTableMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        String name    = txtName.getText();
+        String qty1        = txtQty.getText();
+        String price1   = txtPrice.getText();
+        String discount1   = txtDiscount.getText();
+        String image = txtImage.getText();
+        String total1 = txtTotal.getText();
+        
+        if (!total1.isEmpty() && !name.isEmpty() && !qty1.isEmpty() && !price1.isEmpty() && !discount1.isEmpty() && !image.isEmpty()) {
+            int qty        = Integer.parseInt(qty1);
+            double price   = Double.parseDouble(price1);
+            int discount   = Integer.parseInt(discount1);
+            double total   = Double.parseDouble(total1);
+            int id = Integer.parseInt(txtId.getText());
+            controller.update(new ProductModel(id,name, qty, price, total, discount, image));
+            getData();
+            clear();
+        }else{
+            MSG.warning("Please select item");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     public static void main(String args[]) {
         new Theme("light");

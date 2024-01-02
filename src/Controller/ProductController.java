@@ -5,6 +5,8 @@ import Database.DBConnection;
 import Model.ProductModel;
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductController extends DBConnection{
     PreparedStatement ps;
@@ -47,7 +49,25 @@ public class ProductController extends DBConnection{
         }
     }
     public void update(ProductModel product){
-        
+        String sql = "UPDATE `tbl_product` SET `name`=?,`qty`=?,`price`=?,`total`=?,`discount`=?,`image`=? WHERE `id`=?";
+        try {
+            ps=connection().prepareStatement(sql);
+            ps.setString(1,product.getName());
+            ps.setInt(2, product.getQty());
+            ps.setDouble(3, product.getPrice());
+            ps.setDouble(4, product.getTotal());
+            ps.setInt(5, product.getDiscount());
+            ps.setString(6, product.getImage());
+            ps.setInt(7,product.getId());
+            int i = ps.executeUpdate();
+            if (i>0) {
+                MSG.success("Updated");
+            } else {
+                MSG.error("Update Fail");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
     public void delete(int id){
         
